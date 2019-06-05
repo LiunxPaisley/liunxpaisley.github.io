@@ -355,7 +355,7 @@
                 
               
 
-              <time title="创建时间：2019-06-05 00:00:00 / 修改时间：21:30:36" itemprop="dateCreated datePublished" datetime="2019-06-05T00:00:00+08:00">2019-06-05</time>
+              <time title="创建时间：2019-06-05 00:00:00 / 修改时间：21:44:51" itemprop="dateCreated datePublished" datetime="2019-06-05T00:00:00+08:00">2019-06-05</time>
             
 
             
@@ -414,136 +414,176 @@
       
         
           
-            <h1 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h1><h2 id="第三章-概率与信息论"><a href="#第三章-概率与信息论" class="headerlink" title="第三章 概率与信息论"></a>第三章 概率与信息论</h2><h3 id="3-9-常用概率分布"><a href="#3-9-常用概率分布" class="headerlink" title="3.9 常用概率分布"></a>3.9 常用概率分布</h3><h4 id="3-9-6-分布的混合"><a href="#3-9-6-分布的混合" class="headerlink" title="3.9.6 分布的混合"></a>3.9.6 分布的混合</h4><p>通过组合一些简单的概率分布来定义新的概率分布也是很常见的。一种通用的组合方法是构造 <strong>混合分布</strong>（mixture distribution）。 </p>
-<p>混合分布由一些组件 (component)分布构成。每次实验，样本是由哪个组件分布产生的取决于从一个 Multinoulli 分布中采样的结果： </p>
-<script type="math/tex; mode=display">
-P(\mathrm{x})=\sum_{i}P(c=i)P(\mathrm{x}|c=i)</script><p>一个非常强大且常见的混合模型是 <strong>高斯混合模型</strong>（Gaussian Mixture Model），它的组件$ p(x | c = i) $是高斯分布。 </p>
-<p>高斯混合模型的参数指明了给每个组件$ i $的 <strong>先验概率</strong>（prior probability）$ α_i=P(c=i)$。 ‘‘<strong>先验</strong>’’ 一词表明了在观测到$ x $之前传递给模型关于 $c$ 的信念。 </p>
-<p>作为对比， $P (c |\boldsymbol{x}) $是 后验概率（posterior probability），因为它是在观测到 $\mathrm{x}$ 之后进行计算的。  </p>
-<p>==先验和后验的说明==：</p>
+            <h1>第一部分</h1>
+<h2 id="第三章-概率与信息论">第三章 概率与信息论</h2>
+<h3 id="3-9-常用概率分布">3.9 常用概率分布</h3>
+<h4 id="3-9-6-分布的混合">3.9.6 分布的混合</h4>
+<p>通过组合一些简单的概率分布来定义新的概率分布也是很常见的。一种通用的组合方法是构造 <strong>混合分布</strong>（mixture distribution）。</p>
+<p>混合分布由一些组件 (component)分布构成。每次实验，样本是由哪个组件分布产生的取决于从一个 Multinoulli 分布中采样的结果：
+$$
+P(\mathrm{x})=\sum_{i}P(c=i)P(\mathrm{x}|c=i)
+$$
+一个非常强大且常见的混合模型是 <strong>高斯混合模型</strong>（Gaussian Mixture Model），它的组件$ p(x | c = i) $是高斯分布。</p>
+<p>高斯混合模型的参数指明了给每个组件$ i $的 <strong>先验概率</strong>（prior probability）$ α_i=P(c=i)$。 ‘‘<strong>先验</strong>’’ 一词表明了在观测到$ x $之前传递给模型关于 $c$ 的信念。</p>
+<p>作为对比， $P (c |\boldsymbol{x}) $是 后验概率（posterior probability），因为它是在观测到 $\mathrm{x}$ 之后进行计算的。</p>
+<p><mark>先验和后验的说明</mark>：</p>
 <blockquote>
 <p>先于结果，确定原因的概率分布，就是先验概率。</p>
 <p>先知道结果，然后由结果估计原因的概率分布，就是后验概率</p>
-<p>贝叶斯公式表明了先验和后验的关系：</p>
-<script type="math/tex; mode=display">
-p(\theta|x) = \frac{p(x|\theta)p(\theta)}{p(x)}</script><p>$x$ : 观察得到的结果</p>
+<p>贝叶斯公式表明了先验和后验的关系：
+$$
+p(\theta|x) = \frac{p(x|\theta)p(\theta)}{p(x)}
+$$
+$x$ : 观察得到的结果</p>
 <p>$\theta$ ：决定数据分布的参数（原因）</p>
 <p>$p(\theta|x)$：后验概率（posterior）</p>
 <p>$p(\theta)$：先验（prior）先验与结果无关，是基于已知的经验对参数的分布做(xia)出(ji)的(ba)假设，比如直接使$\theta$服从高斯分布</p>
 <p>$p(x|\theta)$：似然估计（likelihood）</p>
 <p>$p(x)$：被观测到的概率（evidence）</p>
 </blockquote>
-<p>==举例：==</p>
+<p><mark>举例：</mark></p>
 <p>给定一副扑克牌，我们从中选择一张卡牌。总共有52张扑克牌（除去大小王），其中有26张红色，26张黑色。抽取一张牌，如果我们已知这张卡牌是红色的，那么这张牌是4的概率是多少？</p>
-<p>将上述描述转化成公式化的形式，可以设事件A表示抽取的卡牌是4，事件B表示卡牌是红色。因此，</p>
-<script type="math/tex; mode=display">
-P(A|B)</script><p>的含义就是我们例子中的</p>
-<script type="math/tex; mode=display">
-P(4|red)</script><p>，这就是我们要计算的概率。我们根据以前的知识可以很轻易计算出这个概率等于1/13（26张红色的，其中有2张是4），但是我们这里用贝叶斯定理来计算。</p>
-<p>我们可以算出以下概率：</p>
-<script type="math/tex; mode=display">
-P(B|A) = P(red|4)=1/2 \\
-P(A)=P(4)=4/52=1/13 \\
-P(B)=P(red)=26/52=1/2</script><h1 id="第二部分-深度网络：现代实践"><a href="#第二部分-深度网络：现代实践" class="headerlink" title="第二部分 深度网络：现代实践"></a>第二部分 深度网络：现代实践</h1><h2 id="第六章-深度前馈网络"><a href="#第六章-深度前馈网络" class="headerlink" title="第六章 深度前馈网络"></a>第六章 深度前馈网络</h2><p>前馈神经网络被称为”网络“是因为它们通常用许多不同的函数复合在一起表示。该模型与一个有向无环图相关联，而图描述了函数是如何复合在一起的。例如，我们有三个函数$f^{(1)}, f^{(2)} 和 f^{(3)}$ 连接在一个链上以形成$f(x) = f^{(3)}(f^{(2)}(f^{(1)}(x)))$。这些链式结构是神经网络中最常用的结构。 </p>
+<p>将上述描述转化成公式化的形式，可以设事件A表示抽取的卡牌是4，事件B表示卡牌是红色。因此，
+$$
+P(A|B)
+$$
+的含义就是我们例子中的
+$$
+P(4|red)
+$$
+，这就是我们要计算的概率。我们根据以前的知识可以很轻易计算出这个概率等于1/13（26张红色的，其中有2张是4），但是我们这里用贝叶斯定理来计算。</p>
+<p>我们可以算出以下概率：
+$$
+P(B|A) = P(red|4)=1/2 \
+P(A)=P(4)=4/52=1/13 \
+P(B)=P(red)=26/52=1/2
+$$</p>
+<h1>第二部分 深度网络：现代实践</h1>
+<h2 id="第六章-深度前馈网络">第六章 深度前馈网络</h2>
+<p>前馈神经网络被称为”网络“是因为它们通常用许多不同的函数复合在一起表示。该模型与一个有向无环图相关联，而图描述了函数是如何复合在一起的。例如，我们有三个函数$f^{(1)}, f^{(2)} 和 f^{(3)}$ 连接在一个链上以形成$f(x) = f<sup>{(3)}(f</sup>{(2)}(f^{(1)}(x)))$。这些链式结构是神经网络中最常用的结构。</p>
 <p><strong>深度学习要干什么？</strong></p>
-<p>为了扩展线性模型来表示 $x $的非线性函数，我们可以不把线性模型用于 $x$ 本身，而是用在一个变换后的输入 $\phi(x) $上，这里 $\phi$ 是一个非线性变换。 </p>
+<p>为了扩展线性模型来表示 $x $的非线性函数，我们可以不把线性模型用于 $x$ 本身，而是用在一个变换后的输入 $\phi(x) $上，这里 $\phi$ 是一个非线性变换。</p>
 <p><strong>深度学习的策略</strong></p>
-<p>深度学习的策略是去学习$\phi$。在这种方法中，我们有一个模型 $y = f(x; θ; w) =\phi(x; \theta)^{\mathrm{T}}w$。我们现在有两种参数：用于从一大类函数中学习$\phi$的参数$\theta$，以及用于将 $\phi(x)$ 映射到所需的输出的参数$w$。 </p>
+<p>深度学习的策略是去学习$\phi$。在这种方法中，我们有一个模型 $y = f(x; θ; w) =\phi(x; \theta)^{\mathrm{T}}w$。我们现在有两种参数：用于从一大类函数中学习$\phi$的参数$\theta$，以及用于将 $\phi(x)$ 映射到所需的输出的参数$w$。</p>
 <blockquote>
 <p>$\phi(x; \theta)$表示以$x$为自变量，$\theta$为参数的函数</p>
 </blockquote>
-<h3 id="6-1-学习XOR"><a href="#6-1-学习XOR" class="headerlink" title="6.1 学习XOR"></a>6.1 学习XOR</h3><blockquote>
+<h3 id="6-1-学习xor">6.1 学习XOR</h3>
+<blockquote>
 <p>套路说明（参见5.10节）：</p>
-<p>几乎所有的深度学习算法都可以被描述为一个相当简单的配方：特定的数据集、代价函数（目标函数，损失函数）、优化过程和模型。 </p>
+<p>几乎所有的深度学习算法都可以被描述为一个相当简单的配方：特定的数据集、代价函数（目标函数，损失函数）、优化过程和模型。</p>
 <p>函数说明（参见4.3节）：</p>
-<p>我们把要==最小化或最大化==的函数称为 目标函数（objective function）或 准则（criterion）。当我们对其进行==最小化==时，我们也把它称为 代价函数（cost function）、损失函数（loss function）或 误差函数（error function）。 </p>
+<p>我们把要<mark>最小化或最大化<mark>的函数称为 目标函数（objective function）或 准则（criterion）。当我们对其进行</mark>最小化</mark>时，我们也把它称为 代价函数（cost function）、损失函数（loss function）或 误差函数（error function）。</p>
 <p>损失函数和代价函数是同一个东西，目标函数是一个与他们相关但更广的概念，对于目标函数来说在有约束条件下的最小化就是损失函数（loss function）</p>
+</blockquote>
+<blockquote>
 <p>拟合的目标：用模型函数拟合目标函数（异或运算函数）</p>
 </blockquote>
 <p><strong>数据集：</strong>$\mathbb{X}= {[0,0]^{\mathrm{T}}, [0,1]^{\mathrm{T}}, [1,0]^{\mathrm{T}}, [1,1]^{\mathrm{T}}}  $</p>
-<p><strong>目标函数：</strong>由XOR函数提供了目标函数$y=f^*(x)$，即异或运算函数</p>
-<p><strong>损失函数：</strong>$J(\theta)=\frac{1}{4}\sum_{x \in \mathbb{X}}(f^*(x)-f(x;\theta))^2$</p>
+<p>**目标函数：*<em>由XOR函数提供了目标函数$y=f^</em>(x)$，即异或运算函数</p>
+<p><strong>损失函数：</strong>$J(\theta)=\frac{1}{4}\sum_{x \in \mathbb{X}}(f<sup>*(x)-f(x;\theta))</sup>2$</p>
 <blockquote>
 <p>为了使$f^*(x)和f(x;\theta)$之间的差值最小化，</p>
 </blockquote>
-<p><strong>模型函数：</strong>现在网络包含两个函数：</p>
-<script type="math/tex; mode=display">
+<p>**模型函数：**现在网络包含两个函数：
+$$
 \begin{gather}
-h=f^{(1)}(x;W,c)=W^{\mathrm{T}}x+c \\
-y=f^{(2)}(h;w,b)=w^{\mathrm{T}}h+b
-\end{gather}</script><p>如何确定$f^{(1)}$是哪种函数？</p>
+h=f<sup>{(1)}(x;W,c)=W</sup>{\mathrm{T}}x+c \
+y=f<sup>{(2)}(h;w,b)=w</sup>{\mathrm{T}}h+b
+\end{gather}
+$$
+如何确定$f^{(1)}$是哪种函数？</p>
 <ol>
 <li>如果$f^{(1)}$是线性的，那么前馈网络作为一个整体对于输入仍然是线性的。但是异或函数是非线性的，所以不行。</li>
-<li>必须用非线性的函数描述这些特征。大多数神经网络通过仿射变换之后==紧跟着一个被称为激活函数的固定非线性函数==来实现这个目标，其中仿射变换由学得的参数控制。</li>
+<li>必须用非线性的函数描述这些特征。大多数神经网络通过仿射变换之后<mark>紧跟着一个被称为激活函数的固定非线性函数</mark>来实现这个目标，其中仿射变换由学得的参数控制。</li>
 </ol>
 <p>所以在$f^{(1)}$后加一个ReLU激活函数$g(z)=max{0, z}$。</p>
-<p>现在的网络是</p>
-<script type="math/tex; mode=display">
-f(x;W,c,w,b)=w^{\mathrm{T}}\mathrm{max}\{W^{\mathrm{T}}x+c\}+b</script><p>问题的解是：</p>
-<script type="math/tex; mode=display">
+<p>现在的网络是
+$$
+f(x;W,c,w,b)=w<sup>{\mathrm{T}}\mathrm{max}{W</sup>{\mathrm{T}}x+c}+b
+$$</p>
+<p>问题的解是：
+$$
 W =
 \begin{bmatrix}
-1 & 1 \\
-1 & 1 \\
-\end{bmatrix} \\
-c = 
+1 &amp; 1 \
+1 &amp; 1 \
+\end{bmatrix} \
+c =
 \begin{bmatrix}
-0 \\
+0 \
 -1
-\end{bmatrix} \\
+\end{bmatrix} \
 w=
 \begin{bmatrix}
-1 \\
+1 \
 -2
-\end{bmatrix} \\
-b = 0</script><p>XOR问题有四个样本，组成一个输入矩阵（每一行为一个样本向量，因此网络的公式会有变化，例如$W^{\mathrm{T}}x$应该变为$XW$，毕竟$W$的每一列代表一个向量）：</p>
-<script type="math/tex; mode=display">
-X = 
+\end{bmatrix} \
+b = 0
+$$</p>
+<p>XOR问题有四个样本，组成一个输入矩阵（每一行为一个样本向量，因此网络的公式会有变化，例如$W^{\mathrm{T}}x$应该变为$XW$，毕竟$W$的每一列代表一个向量）：
+$$
+X =
 \begin{bmatrix}
-0 & 0 \\
-0 & 1 \\
-1 & 0 \\
-1 & 1 \\
-\end{bmatrix}</script><h3 id="6-2-基于梯度的学习"><a href="#6-2-基于梯度的学习" class="headerlink" title="6.2 基于梯度的学习"></a>6.2 基于梯度的学习</h3><ol>
+0 &amp; 0 \
+0 &amp; 1 \
+1 &amp; 0 \
+1 &amp; 1 \
+\end{bmatrix}
+$$</p>
+<h3 id="6-2-基于梯度的学习">6.2 基于梯度的学习</h3>
+<ol>
 <li>线性模型和神经网络的最大区别是，神经网络的非线性导致大多数我们感兴趣的代价函数都变得非凸。</li>
 <li>神经网络的训练通常使用迭代的、基于梯度的优化，仅仅使代价函数达到一个非常小的值。不能像凸优化算法那样保证全局收敛。</li>
 <li>用非凸损失函数的随机梯度下降没有这种收敛性保证，并且对参数的初始值很敏感。</li>
 <li>使用基于梯度的学习方法我们必须选择一个代价函数。</li>
 </ol>
-<h4 id="6-2-1-代价函数"><a href="#6-2-1-代价函数" class="headerlink" title="6.2.1 代价函数"></a>6.2.1 代价函数</h4><p>大多数现代的神经网络使用最大似然来训练。这意味着代价函数就是负的对数似然，它与训练数据和模型分布间的交叉熵等价。这个代价函数表示为 :</p>
-<script type="math/tex; mode=display">
-J(\boldsymbol{\theta})=-\mathbb{E}_{\mathbf{x},\mathbf{y} \sim \hat{p}_{data}}\mathrm{log} \space p_{model}( \boldsymbol{y}|\boldsymbol{x})</script><h4 id="6-2-2-输出单元"><a href="#6-2-2-输出单元" class="headerlink" title="6.2.2 输出单元"></a>6.2.2 输出单元</h4><p>假设前馈网络提供了一组定义为$ \boldsymbol{h} = f(x; \boldsymbol{\theta})$ 的隐藏特征。输出层的作用是随后对这些特征进行一些额外的变换来完成整个网络必须完成的任务。 </p>
-<h2 id="第七章-深度学习中的正则化"><a href="#第七章-深度学习中的正则化" class="headerlink" title="第七章 深度学习中的正则化"></a>第七章 深度学习中的正则化</h2><h2 id="第九章-卷积网络"><a href="#第九章-卷积网络" class="headerlink" title="第九章 卷积网络"></a>第九章 卷积网络</h2><h3 id="9-1-卷积运算"><a href="#9-1-卷积运算" class="headerlink" title="9.1 卷积运算"></a>9.1 卷积运算</h3><h3 id="9-2-动机"><a href="#9-2-动机" class="headerlink" title="9.2 动机"></a>9.2 动机</h3><p>卷积运算通过三个重要的思想来帮助改进机器学习系统： </p>
+<h4 id="6-2-1-代价函数">6.2.1 代价函数</h4>
+<p>大多数现代的神经网络使用最大似然来训练。这意味着代价函数就是负的对数似然，它与训练数据和模型分布间的交叉熵等价。这个代价函数表示为 :
+$$
+J(\boldsymbol{\theta})=-\mathbb{E}<em>{\mathbf{x},\mathbf{y} \sim \hat{p}</em>{data}}\mathrm{log} \space p_{model}( \boldsymbol{y}|\boldsymbol{x})
+$$</p>
+<h4 id="6-2-2-输出单元">6.2.2 输出单元</h4>
+<p>假设前馈网络提供了一组定义为$ \boldsymbol{h} = f(x; \boldsymbol{\theta})$ 的隐藏特征。输出层的作用是随后对这些特征进行一些额外的变换来完成整个网络必须完成的任务。</p>
+<h2 id="第七章-深度学习中的正则化">第七章 深度学习中的正则化</h2>
+<h2 id="第九章-卷积网络">第九章 卷积网络</h2>
+<h3 id="9-1-卷积运算">9.1 卷积运算</h3>
+<h3 id="9-2-动机">9.2 动机</h3>
+<p>卷积运算通过三个重要的思想来帮助改进机器学习系统：</p>
 <ol>
-<li>稀疏交互（sparse interactions）<ul>
-<li>卷积网络具有 <strong>稀疏交互</strong>（sparse interactions）（也叫做 稀疏连接（sparse connectivity）或者 稀疏权重（sparse weights））的特征。 ==这是使核的大小远小于输入的大小来达到的==。</li>
-<li>如果有 $m $个输入和 $n$ 个输出，那么矩阵乘法需要 $m \times n $个参数并且相应算法的时间复杂度为 $O(m \times n)$（对于每一个例子）。如果我们限制每一个输出拥有的连接数为 $k$，那么稀疏的连接方法只需要$ k \times n $个参数以及 $O(k \times n)$ 的运行时间。 </li>
-<li>处于卷积网络更深的层中的单元，它们的<strong>接受域</strong>要比处在浅层的单元的接受域更大。 </li>
+<li>稀疏交互（sparse interactions）
+<ul>
+<li>卷积网络具有 <strong>稀疏交互</strong>（sparse interactions）（也叫做 稀疏连接（sparse connectivity）或者 稀疏权重（sparse weights））的特征。 <mark>这是使核的大小远小于输入的大小来达到的</mark>。</li>
+<li>如果有 $m $个输入和 $n$ 个输出，那么矩阵乘法需要 $m \times n $个参数并且相应算法的时间复杂度为 $O(m \times n)$（对于每一个例子）。如果我们限制每一个输出拥有的连接数为 $k$，那么稀疏的连接方法只需要$ k \times n $个参数以及 $O(k \times n)$ 的运行时间。</li>
+<li>处于卷积网络更深的层中的单元，它们的<strong>接受域</strong>要比处在浅层的单元的接受域更大。</li>
 </ul>
 </li>
-<li>参数共享（parameter sharing）<ul>
+<li>参数共享（parameter sharing）
+<ul>
 <li>参数共享（parameter sharing）是指在一个模型的多个函数中使用相同的参数 ，显著地把模型的存储需求降低至 $k$ 个参数，并且 $k$ 通常要比 $m$ 小很多个数量级。</li>
-<li>==卷积在存储需求和统计效率方面极大地优于稠密矩阵的乘法运算==。稀疏连接和参数共享可以显著提高线性函数在一张图像上进行边缘检测的效率。</li>
+<li><mark>卷积在存储需求和统计效率方面极大地优于稠密矩阵的乘法运算</mark>。稀疏连接和参数共享可以显著提高线性函数在一张图像上进行边缘检测的效率。</li>
 </ul>
 </li>
-<li>等变表示（equivariant representations）<ul>
-<li>对于卷积，参数共享的特殊形式使得神经网络层具有对平移<strong>等变</strong>（equivariance）的性质。 </li>
+<li>等变表示（equivariant representations）
+<ul>
+<li>对于卷积，参数共享的特殊形式使得神经网络层具有对平移<strong>等变</strong>（equivariance）的性质。</li>
 <li>对于卷积来说，如果令 $ g $是输入的任意平移函数，那么卷积函数对于$ g$具有等变性。 如果我们先对 输入$I$ 进行这种$ g$变换然后进行卷积操作所得到的结果，与先对$ I $进行卷积然后再对输出使用平移函数$ g$得到的结果是一样的 。</li>
 </ul>
 </li>
 </ol>
-<h3 id="9-3-池化"><a href="#9-3-池化" class="headerlink" title="9.3 池化"></a>9.3 池化</h3><p>卷积网络中一个典型层包含三级 ：</p>
+<h3 id="9-3-池化">9.3 池化</h3>
+<p>卷积网络中一个典型层包含三级 ：</p>
 <ol>
-<li>这一层并行地计算多个卷积产生一组线性激活响应。 </li>
-<li>每一个线性激活响应将会通过一个非线性的激活函数，例如整流线性激活函数。这一级有时也被称为<strong>探测级</strong>（detectorstage）。 </li>
-<li>使用 池化函数（pooling function）来进一步调整这一层的输出。 </li>
+<li>这一层并行地计算多个卷积产生一组线性激活响应。</li>
+<li>每一个线性激活响应将会通过一个非线性的激活函数，例如整流线性激活函数。这一级有时也被称为<strong>探测级</strong>（detectorstage）。</li>
+<li>使用 池化函数（pooling function）来进一步调整这一层的输出。</li>
 </ol>
-<p>池化函数使用某一位置的相邻输出的总体统计特征来代替网络在该位置的输出。 </p>
+<p>池化函数使用某一位置的相邻输出的总体统计特征来代替网络在该位置的输出。</p>
 <p><strong>池化的作用</strong>：</p>
 <ol>
-<li>对输入变化的近似不变性：当输入作出少量平移时， 池化能够帮助输入的表示近似不变（invariant）。 </li>
-<li>可以看作增加了一个无限强的先验：这一层学得的函数必须具有对少量平移的不变性。 </li>
-<li>带有降采样的池化可以减少 </li>
+<li>对输入变化的近似不变性：当输入作出少量平移时， 池化能够帮助输入的表示近似不变（invariant）。</li>
+<li>可以看作增加了一个无限强的先验：这一层学得的函数必须具有对少量平移的不变性。</li>
+<li>带有降采样的池化可以减少</li>
 </ol>
 
           
