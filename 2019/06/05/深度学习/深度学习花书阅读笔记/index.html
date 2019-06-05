@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Party is over">
 <meta property="og:description" content="第一部分第三章 概率与信息论3.9 常用概率分布3.9.6 分布的混合通过组合一些简单的概率分布来定义新的概率分布也是很常见的。一种通用的组合方法是构造 混合分布（mixture distribution）。  混合分布由一些组件 (component)分布构成。每次实验，样本是由哪个组件分布产生的取决于从一个 Multinoulli 分布中采样的结果：$$P(\mathrm{x})=\sum_{">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-05T12:12:20.354Z">
+<meta property="og:updated_time" content="2019-06-05T12:56:49.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习花书阅读笔记">
 <meta name="twitter:description" content="第一部分第三章 概率与信息论3.9 常用概率分布3.9.6 分布的混合通过组合一些简单的概率分布来定义新的概率分布也是很常见的。一种通用的组合方法是构造 混合分布（mixture distribution）。  混合分布由一些组件 (component)分布构成。每次实验，样本是由哪个组件分布产生的取决于从一个 Multinoulli 分布中采样的结果：$$P(\mathrm{x})=\sum_{">
@@ -354,7 +354,7 @@
                 
               
 
-              <time title="创建时间：2019-06-05 00:00:00 / 修改时间：20:12:20" itemprop="dateCreated datePublished" datetime="2019-06-05T00:00:00+08:00">2019-06-05</time>
+              <time title="创建时间：2019-06-05 00:00:00 / 修改时间：20:56:49" itemprop="dateCreated datePublished" datetime="2019-06-05T00:00:00+08:00">2019-06-05</time>
             
 
             
@@ -846,7 +846,7 @@
   
 
 
-  <script src="/js/next-boot.js?v=7.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script src="/js/next-boot.js?v=7.1.2"></script>
 
 
   
@@ -876,6 +876,46 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
   
 
 
